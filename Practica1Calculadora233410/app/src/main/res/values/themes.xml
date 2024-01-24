@@ -7,6 +7,4 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:statusBarcolor" tools:targetApi="1">?attr/colorPrimaryVariant</item>
     </style>
-
-
 </resources>
