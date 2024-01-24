@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    kotlin("android.extensions")
 }
 
 android {
@@ -53,6 +52,7 @@ android {
         jvmTarget = "1.8"
     }
 
+
 }
 
 dependencies {
@@ -75,6 +75,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("org.jetbrains.kotlin:kotlin-android-extensions:1.9.22")
-
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
 }

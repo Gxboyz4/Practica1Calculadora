@@ -1,10 +1,11 @@
 package com.actividades.practica1calculadora233410
 //Imports del tutorial
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import kotlinx.android.synthetic.main.activity_main.*
+import com.actividades.practica1calculadora233410.databinding.ActivityMainBinding
 
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,7 +21,7 @@ import com.actividades.practica1calculadora233410.ui.theme.Practica1Calculadora2
 class MainActivity : AppCompatActivity() {
     private var canAddOperation = false
     private var canAddDecimal = true
-    override fun onCreate(savedInstanceState: Bundle?) {
+    /**override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Practica1Calculadora233410Theme {
@@ -34,6 +35,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    */
+    private lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
     fun numberAction(view: View)
     {
         if(view is Button)
@@ -41,12 +49,12 @@ class MainActivity : AppCompatActivity() {
             if(view.text == ".")
             {
                 if(canAddDecimal)
-                    workingsTV.append(view.text)
+                    binding.workingsTV.append(view.text)
 
                 canAddDecimal = false
             }
             else
-                workingsTV.append(view.text)
+                binding.workingsTV.append(view.text)
 
             canAddOperation = true
         }
@@ -56,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     {
         if(view is Button && canAddOperation)
         {
-            workingsTV.append(view.text)
+            binding.workingsTV.append(view.text)
             canAddOperation = false
             canAddDecimal = true
         }
@@ -64,20 +72,20 @@ class MainActivity : AppCompatActivity() {
 
     fun allClearAction(view: View)
     {
-        workingsTV.text = ""
-        resultsTV.text = ""
+        binding.workingsTV.text = ""
+        binding.resultsTV.text = ""
     }
 
     fun backSpaceAction(view: View)
     {
-        val length = workingsTV.length()
+        val length = binding.workingsTV.length()
         if(length > 0)
-            workingsTV.text = workingsTV.text.subSequence(0, length - 1)
+            binding.workingsTV.text = binding.workingsTV.text.subSequence(0, length - 1)
     }
 
     fun equalsAction(view: View)
     {
-        resultsTV.text = calculateResults()
+        binding.resultsTV.text = calculateResults()
     }
 
     private fun calculateResults(): String
@@ -165,7 +173,7 @@ class MainActivity : AppCompatActivity() {
     {
         val list = mutableListOf<Any>()
         var currentDigit = ""
-        for(character in workingsTV.text)
+        for(character in binding.workingsTV.text)
         {
             if(character.isDigit() || character == '.')
                 currentDigit += character
