@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.actividades.practica1calculadora233410.ui.theme.Practica1Calculadora233410Theme
 
+
 class MainActivity : AppCompatActivity() {
     private var canAddOperation = false
     private var canAddDecimal = true
@@ -123,7 +124,7 @@ class MainActivity : AppCompatActivity() {
     private fun timesDivisionCalculate(passedList: MutableList<Any>): MutableList<Any>
     {
         var list = passedList
-        while (list.contains('x') || list.contains('/'))
+        while (list.contains('x') || list.contains('/') || list.contains('^'))
         {
             list = calcTimesDiv(list)
         }
@@ -152,6 +153,10 @@ class MainActivity : AppCompatActivity() {
                     '/' ->
                     {
                         newList.add(prevDigit / nextDigit)
+                        restartIndex = i + 1
+                    }
+                    '^' ->{
+                        newList.add(Math.pow(prevDigit.toDouble(), nextDigit.toDouble()).toFloat())
                         restartIndex = i + 1
                     }
                     else ->
@@ -198,6 +203,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = "Hello $name!",
         modifier = modifier
     )
+
 }
 
 @Preview(showBackground = true)

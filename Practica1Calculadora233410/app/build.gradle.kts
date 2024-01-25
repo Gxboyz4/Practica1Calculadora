@@ -51,7 +51,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
+    packaging {
+        resources.pickFirsts.add("kotlin/internal/internal.kotlin_builtins")
+    }
 
 }
 
@@ -74,7 +76,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("org.jetbrains.kotlin:kotlin-android-extensions:1.9.22")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+   //implementation("org.jetbrains.kotlin:kotlin-android-extensions:1.9.22")
+    //implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
 }
